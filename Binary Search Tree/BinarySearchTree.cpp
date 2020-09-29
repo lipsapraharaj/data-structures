@@ -4,7 +4,7 @@
 #include<cstdlib>
 using namespace std;
 /*
- * Node Declaration
+ * node Declaration
  */
 struct node
 {
@@ -23,6 +23,9 @@ class BST
         void recursive_preorder(node*);
         void recursive_inorder(node*);
         void recursive_postorder(node*);
+        void search(int);
+       
+        
        
         BST()
         {
@@ -41,7 +44,7 @@ void BST::insert(node *tree, node *newnode)
         root->info = newnode->info;
         root->left = NULL;
         root->right = NULL;
-        cout<<"Root Node is Added"<<endl;
+        cout<<"Root node is Added"<<endl;
         return;
     }
     if (tree->info == newnode->info)
@@ -60,7 +63,7 @@ void BST::insert(node *tree, node *newnode)
             tree->left = newnode;
             (tree->left)->left = NULL;
             (tree->left)->right = NULL;
-            cout<<"Node Added To Left"<<endl;
+            cout<<"node Added To Left"<<endl;
             return;
         }
     }
@@ -75,7 +78,7 @@ void BST::insert(node *tree, node *newnode)
             tree->right = newnode;
             (tree->right)->left = NULL;
             (tree->right)->right = NULL;
-            cout<<"Node Added To Right"<<endl;
+            cout<<"node Added To Right"<<endl;
             return;
         }	
     }
@@ -135,13 +138,48 @@ void BST::recursive_postorder(node *ptr)
         cout<<ptr->info<<"  ";
     }
 }
- 
+
+/*
+ *  Search 
+ */
+void BST::search(int data)
+{
+    if(root == 0)
+    {
+        cout<<"Tree is Empty";
+    }
+    else
+    {
+        node *traversenode = root;
+        while (traversenode != 0 )
+        {
+            if(traversenode->data == data)
+            {
+                cout<<"Found in the Tree\n";
+                return;
+            }
+            else if(data > traversenode->data)
+            {
+                traversenode = traversenode->right;
+            }
+            else if(data < traversenode->data)
+            {
+                traversenode = traversenode->left;
+            }
+        }
+        cout<<"Element is not in the Tree\n";
+    }
+}
+
+
+
+
  /*
  * Main Contains Menu
  */
 int main()
 {
-    int choice, num;
+    int choice, num,data;
     BST bst;
     node *temp;
     while (1)
@@ -153,7 +191,8 @@ int main()
         cout<<"2.Recursive Inorder Traversal"<<endl;
         cout<<"3.Recursive Preorder Traversal"<<endl;
         cout<<"4.Recursive Postorder Traversal"<<endl;
-        cout<<"5.Quit"<<endl;
+        cout<<"5.Search a node"<<endl;
+        cout<<"6.Quit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
@@ -179,6 +218,11 @@ int main()
             cout<<endl;
             break;
          case 5:
+            cout<<"Enter Data : "; 
+            cin>>data;
+            bst.search(data);
+                break;
+         case 6:
             exit(1);
         default:
             cout<<"Wrong choice"<<endl;
