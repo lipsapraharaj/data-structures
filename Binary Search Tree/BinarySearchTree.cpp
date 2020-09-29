@@ -140,7 +140,7 @@ void BST::recursive_postorder(node *ptr)
 }
 
 /*
- *  Search 
+ *  Search a node
  */
 void BST::search(int data)
 {
