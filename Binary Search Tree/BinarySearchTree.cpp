@@ -181,7 +181,7 @@ void BST::DFS(node *root)
     struct node *temp=root, *prev;
     int visited;
  
-    printf("On DFS traversal we get:\n");
+    cout<<"On DFS traversal we get:\n";
     while (temp && !temp->visited)
     {
         if(temp->left && !temp->left->visited)
