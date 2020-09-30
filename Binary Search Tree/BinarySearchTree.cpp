@@ -174,7 +174,6 @@ void BST::search(int data)
 /*
  * Depth First Search Traversal
  */
-
 void BST::DFS(node *root)
 {
     struct node *temp=root, *prev;
@@ -203,7 +202,6 @@ void BST::DFS(node *root)
 /*
  * Creating Mirror Image of the Tree
  */
-
 void BST::mirrorimage(node *root)
 {
   if (root != NULL)
