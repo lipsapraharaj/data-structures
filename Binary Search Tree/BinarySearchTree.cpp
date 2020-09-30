@@ -25,8 +25,7 @@ class BST
         void recursive_postorder(node*);
         void search(int);
         void DFS(node*);
-       
-        
+        void mirrorimage(node*)
        
         BST()
         {
@@ -200,8 +199,31 @@ void BST::DFS(node *root)
         }
     }
 }
- 
 
+/*
+ * Creating Mirror Image of the Tree
+ */
+
+void BST::mirrorimage(node *root)
+{
+  if (root != NULL)
+    {
+        struct node *temp;
+        mirrorimage(root->left);         /* First traversing the left subtree */
+        mirrorimage(root->right);        /* Traversing the right subtree. */
+        temp=root->left;  
+       
+         /* 
+          * Swap the left and the right child 
+          * of all the nodes to create
+          * a mirror image of a tree 
+          */
+
+        root->left=root->right;  
+        root->right=temp;
+    }
+}
+ 
 
 
  /*
@@ -223,7 +245,8 @@ int main()
         cout<<"4.Recursive Postorder Traversal"<<endl;
         cout<<"5.Search a node"<<endl;
         cout<<"6.DFS(depth first search) Traversal"<<endl;
-        cout<<"7.Quit"<<endl;
+        cout<<"7.Creating Mirror Image of the Tree"<<endl;
+        cout<<"8.Quit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
@@ -257,10 +280,14 @@ int main()
             bst.DFS(root);
             break;
          case 7:
+            bst.mirrorimage(root);
+            break;
+         case 8:
             exit(1);
         default:
             cout<<"Wrong choice"<<endl;
         }
     }
 }
- 
+
+
