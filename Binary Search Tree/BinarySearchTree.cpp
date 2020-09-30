@@ -24,6 +24,7 @@ class BST
         void recursive_inorder(node*);
         void recursive_postorder(node*);
         void search(int);
+        void DFS(node*);
        
         
        
@@ -144,7 +145,7 @@ void BST::recursive_postorder(node *ptr)
  */
 void BST::search(int data)
 {
-    if(root == 0)
+    if(root==0)
     {
         cout<<"Tree is Empty";
     }
@@ -171,6 +172,35 @@ void BST::search(int data)
     }
 }
 
+/*
+ * Depth First Search Traversal
+ */
+
+void BST::DFS(node *root)
+{
+    struct node *temp=root, *prev;
+    int visited;
+ 
+    printf("On DFS traversal we get:\n");
+    while (temp && !temp->visited)
+    {
+        if(temp->left && !temp->left->visited)
+        {
+            temp = temp->left;
+        }
+        else if(temp->right && !temp->right->visited)
+        {
+            temp = temp->right;
+        }
+        else
+        {
+            cout<<temp->a;
+            temp->visited=1;
+            temp=root;
+        }
+    }
+}
+ 
 
 
 
@@ -192,7 +222,8 @@ int main()
         cout<<"3.Recursive Preorder Traversal"<<endl;
         cout<<"4.Recursive Postorder Traversal"<<endl;
         cout<<"5.Search a node"<<endl;
-        cout<<"6.Quit"<<endl;
+        cout<<"6.DFS(depth first search) Traversal"<<endl;
+        cout<<"7.Quit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
@@ -223,6 +254,9 @@ int main()
             bst.search(data);
                 break;
          case 6:
+            bst.DFS(root);
+            break;
+         case 7:
             exit(1);
         default:
             cout<<"Wrong choice"<<endl;
