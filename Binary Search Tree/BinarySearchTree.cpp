@@ -65,7 +65,7 @@ void BST::insert(node *tree, node *newnode)
             tree->left = newnode;
             (tree->left)->left = NULL;
             (tree->left)->right = NULL;
-            cout<<"node Added To Left"<<endl;
+            cout<<"Node Added To Left"<<endl;
             return;
         }
     }
@@ -80,7 +80,7 @@ void BST::insert(node *tree, node *newnode)
             tree->right = newnode;
             (tree->right)->left = NULL;
             (tree->right)->right = NULL;
-            cout<<"node Added To Right"<<endl;
+            cout<<"Node Added To Right"<<endl;
             return;
         }	
     }
