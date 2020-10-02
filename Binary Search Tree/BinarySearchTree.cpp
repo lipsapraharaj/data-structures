@@ -25,7 +25,7 @@ class BST
         void recursive_inorder(node*);
         void recursive_postorder(node*);
         void search(int);
-        void DFS(node*);
+        void BFS(node*);
         void mirrorimage(node*);
         void count_nodes(node*,node*);
        
@@ -174,9 +174,9 @@ void BST::search(int data)
 }
 
 /*
- * Depth First Search Traversal
+ * Breadth First Search Traversal
  */
-void BST::DFS(node *root)
+void BST::BFS(node *root)
 {
     struct node *temp=root, *prev;
     int visited;
@@ -319,7 +319,7 @@ int main()
             bst.search(data);
                 break;
          case 6:
-            bst.DFS(root);
+            bst.BFS(root);
             break;
          case 7:
             bst.mirrorimage(root);
