@@ -9,6 +9,7 @@ using namespace std;
 struct node
 {
     int info;
+    int count = 0;
     struct node *left;
     struct node *right;
 }*root;
@@ -25,7 +26,8 @@ class BST
         void recursive_postorder(node*);
         void search(int);
         void DFS(node*);
-        void mirrorimage(node*)
+        void mirrorimage(node*);
+        void count_nodes(node*,node*);
        
         BST()
         {
@@ -221,6 +223,47 @@ void BST::mirrorimage(node *root)
         root->right=temp;
     }
 }
+
+/* 
+ *  Count Number Of Leaf Nodes,Non-leaf Nodes and Total Number Of Nodes
+ */
+void BST::count_nodes(node *newnode, node *root)
+        {
+            if(newnode != NULL)
+            {
+                count_nodes(newnode->left);
+                if((newnode->left == NULL) && (newnode->right == NULL))
+                {
+                    count++;
+                }
+                count_nodes(newnode->right);
+            }
+            cout<<"Total number of leaf nodes are : "<<count;
+        }
+ 
+    if(newnode != NULL)
+    {
+        count_nodes(newnode->left);
+        if((newnode->left != NULL) || (newnode->right != NULL))
+        {
+            count++;
+        }
+        count_nodes(newnode->right);
+    }
+    cout<<"Total number of non-leaf nodes are : "<<count;
+ 
+}
+
+            if(root != NULL)
+            {
+                count_nodes(root->left);
+                count++;
+                count_nodes(root->right);
+            }
+             cout<<"Total number of nodes are : "<<count;
+            
+        }
+
  
 
 
@@ -244,7 +287,8 @@ int main()
         cout<<"5.Search a node"<<endl;
         cout<<"6.DFS(depth first search) Traversal"<<endl;
         cout<<"7.Creating Mirror Image of the Tree"<<endl;
-        cout<<"8.Quit"<<endl;
+        cout<<"8.Count the number of leaf nodes, non-leaf nodes and total number of nodes"<<endl;
+        cout<<"9.Quit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
@@ -281,6 +325,9 @@ int main()
             bst.mirrorimage(root);
             break;
          case 8:
+            bst.count_nodes(newnode,root);
+            break;
+         case 9:
             exit(1);
         default:
             cout<<"Wrong choice"<<endl;
