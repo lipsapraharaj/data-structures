@@ -2,6 +2,8 @@
 #include<conio.h>
 #include<process.h>
 #include<cstdlib>
+#include<queue.h>
+
 using namespace std;
 /*
  * node Declaration
@@ -178,28 +180,21 @@ void BST::search(int data)
  */
 void BST::BFS(node *root)
 {
-    struct node *temp=root, *prev;
-    int visited;
- 
-    cout<<"On DFS traversal we get:\n";
-    while (temp && !temp->visited)
-    {
-        if(temp->left && !temp->left->visited)
-        {
-            temp = temp->left;
-        }
-        else if(temp->right && !temp->right->visited)
-        {
-            temp = temp->right;
-        }
-        else
-        {
-            cout<<temp->a;
-            temp->visited=1;
-            temp=root;
-        }
-    }
+ queue <node*> q;
+   node *item;
+   queue.enqueue(root);            //insert the root at first
+   while(!q.isEmpty())
+  {
+      item = q.front();            //get the element from the front end
+      cout << item->value << " ";
+      if(item->left != NULL)         //When left child is present, insert into queue
+         q.enqueue(item->left);
+      if(item->right != NULL)        //When right child is present, insert into queue
+         q.enqueue(item->right);
+      q.dequeue(); //remove the item from queue
+   }
 }
+    
 
 /*
  * Creating Mirror Image of the Tree
@@ -264,6 +259,30 @@ void BST::count_nodes(node *newnode, node *root)
             
         }
 
+/*
+ * Find The Height Of a Tree
+ */
+void BST::heightoftree(node *root)
+{
+    int maximum,rightsubtree,leftsubtree ;
+    if (root!=NULL)
+    {
+         leftsubtree = heightoftree(root->left);      /* Finding the height of left subtree. */
+        
+         rightsubtree = heightoftree(root->right);   /* Finding the height of right subtree */
+         if (leftsubtree > rightsubtree)
+        {
+            maximum = leftsubtree + 1;
+            cout<<"Height : "<<maximum;
+        }
+        else
+        {
+            maximum = rightsubtree + 1;
+            cout<<"Height : "<<maximum;
+        }
+    }
+}
+
  
 
 
@@ -288,7 +307,8 @@ int main()
         cout<<"6.DFS(depth first search) Traversal"<<endl;
         cout<<"7.Creating Mirror Image of the Tree"<<endl;
         cout<<"8.Count the number of leaf nodes, non-leaf nodes and total number of nodes"<<endl;
-        cout<<"9.Quit"<<endl;
+        cout<<"9.Height of the Tree"<<endl;
+        cout<<"10.Quit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
@@ -328,6 +348,9 @@ int main()
             bst.count_nodes(newnode,root);
             break;
          case 9:
+            bst.heightoftree(root);
+            break;
+         case 10:
             exit(1);
         default:
             cout<<"Wrong choice"<<endl;
