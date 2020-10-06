@@ -30,6 +30,7 @@ class BST
         void BFS(node*);
         void mirrorimage(node*);
         void count_nodes(node*,node*);
+        void heightoftree(node*)
        
         BST()
         {
