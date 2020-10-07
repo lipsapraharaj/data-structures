@@ -1,8 +1,9 @@
-#include <iostream.h>
+#include<iostream.h>
 #include<conio.h>
 #include<process.h>
 #include<cstdlib>
 #include<queue.h>
+#include<stack.h>
 
 using namespace std;
 /*
@@ -26,6 +27,9 @@ class BST
         void recursive_preorder(node*);
         void recursive_inorder(node*);
         void recursive_postorder(node*);
+        void iterative_preorder();
+        void iterative_postorder();
+        void iterative_inorder();
         void search(int);
         void BFS(node*);
         void mirrorimage(node*);
@@ -145,6 +149,108 @@ void BST::recursive_postorder(node *ptr)
 }
 
 /*
+ * Preorder Traversal(iterative)
+ */
+
+ void BST::iterative_preorder()
+             {
+                  node *current=root;
+                  stack<node*> st1
+                  while(current!=NULL)
+                  {
+                                      while((current!=NULL)&&(!visited))
+                                      {
+                                                     st1.push(current);
+                                                     //if(current!=NULL)
+                                                     cout<<current->data<<endl;
+                                                     current=current->left;
+                                      }
+                                      current=st1.pop();
+                                      if(current==NULL)
+                                      break;
+                                      visited=1;
+                                      if(current->right!=NULL)
+                                      {
+                                                              visited=0;
+                                                              current=current->right;
+                                      }
+                  }
+             }
+
+/*
+ * Postorder Traversal(iterative)
+ */
+             
+void BST::iterative_postorder()
+             {
+                node *tmp;
+                  node *current=root;
+                   stack<node*> st1
+                  while(current!=NULL)
+                  { 
+                                      while((current!=NULL)&&(!current->visited))
+                                      { st1.push(current);
+                                       
+                                           current=current->left;              
+                                      }                    
+                  current=st1.pop();
+                  if(current==NULL)
+                  break;
+      tmp=current->right;                    
+               
+                                      if((current->right!=NULL) &&(!tmp->visited))
+                                      { 
+                                             st1.push(current);
+                                             current=current->right;
+                                              continue; 
+                                      }
+                                       
+                                      
+                                       if(!current->visited)
+                                      {
+                                                cout<<current->data<<endl;
+                                                current->visited =1;
+                                     }
+                  }    
+             }
+
+             
+/*
+ * Inorder Traversal(iterative)
+ */             
+void BST::iterative_inorder()
+             {
+               int ctr=0;
+                  node *current=root;
+                   stack<node*> st1
+                  while(current!=NULL)
+                  {
+                                      while((current!=NULL)&&(!visited))
+                                      {
+                                                     st1.push(current);
+                                                     current=current->left;
+                                      }
+                                      current=st1.pop();
+                                      if(current!=NULL)
+                                      {
+                                       cout<<current->data<<endl;
+                                       ctr++;
+                                      }
+                                      else
+                                      break;
+                                      visited=1;
+                                      if(current->right!=NULL)
+                                      {
+                                                              visited=0;
+                                                              current=current->right;
+                                      }
+                  }
+                  
+                  cout<<"The number of nodes:\n"<<ctr<<endl;
+             }
+             
+
+/*
  *  Search a node
  */
 void BST::search(int data)
@@ -181,9 +287,9 @@ void BST::search(int data)
  */
 void BST::BFS(node *root)
 {
- queue <node*> q;
+ queue<node*> q;
    node *item;
-   queue.enqueue(root);            //insert the root at first
+   q.enqueue(root);            //insert the root at first
    while(!q.isEmpty())
   {
       item = q.front();            //get the element from the front end
@@ -304,12 +410,15 @@ int main()
         cout<<"2.Recursive Inorder Traversal"<<endl;
         cout<<"3.Recursive Preorder Traversal"<<endl;
         cout<<"4.Recursive Postorder Traversal"<<endl;
-        cout<<"5.Search a node"<<endl;
-        cout<<"6.DFS(depth first search) Traversal"<<endl;
-        cout<<"7.Creating Mirror Image of the Tree"<<endl;
-        cout<<"8.Count the number of leaf nodes, non-leaf nodes and total number of nodes"<<endl;
-        cout<<"9.Height of the Tree"<<endl;
-        cout<<"10.Quit"<<endl;
+        cout<<"5.Iterative Inorder Traversal"<<endl;
+        cout<<"6.Iterative Preorder Traversal"<<endl;
+        cout<<"7.Iterative Postorder Traversal"<<endl;
+        cout<<"8.Search a node"<<endl;
+        cout<<"9.DFS(depth first search) Traversal"<<endl;
+        cout<<"10.Creating Mirror Image of the Tree"<<endl;
+        cout<<"11.Count the number of leaf nodes, non-leaf nodes and total number of nodes"<<endl;
+        cout<<"12.Height of the Tree"<<endl;
+        cout<<"13.Quit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
@@ -335,23 +444,38 @@ int main()
             cout<<endl;
             break;
          case 5:
-            cout<<"Enter Data : "; 
+            cout<<"Inorder Traversal of BST(iterative):"<<endl;
+            bst.iterative_inorder();
+            cout<<endl;
+            break;
+	case 6:
+            cout<<"Preorder Traversal of BST(iterative):"<<endl;
+            bst.iterative_preorder();
+            cout<<endl;
+            break;
+        case 7:
+            cout<<"Postorder Traversal of BST(iterative):"<<endl;
+            bst.iterative_postorder();
+            cout<<endl;
+            break;
+         case 8:
+            cout<<"Enter Data to be searched : "; 
             cin>>data;
             bst.search(data);
                 break;
-         case 6:
+         case 9:
             bst.BFS(root);
             break;
-         case 7:
+         case 10:
             bst.mirrorimage(root);
             break;
-         case 8:
+         case 11:
             bst.count_nodes(newnode,root);
             break;
-         case 9:
+         case 12:
             bst.heightoftree(root);
             break;
-         case 10:
+         case 13:
             exit(1);
         default:
             cout<<"Wrong choice"<<endl;
