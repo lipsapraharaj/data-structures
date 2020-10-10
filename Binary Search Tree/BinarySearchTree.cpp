@@ -36,6 +36,7 @@ class BST
         void count_nodes(node*,node*);
         void heightoftree(node*);
         void delete_merging(node*,int);
+        void delete_copying(node*,int);
        
         BST()
         {
@@ -395,13 +396,15 @@ void BST::heightoftree(node *root)
  * Deletion by Merging
  */
 void BST::delete_merging(node *root,int el)
-int y;
+{
+  node *temp,*p,*q;
+  int y;
 	while(root!=NULL)
 	{
 		if(root->data==el)
 		break;
 		temp=root;
-		if(el<t->data)
+		if(el<root->data)
 		root=root->left;
 		else
 		root=root->right;
@@ -418,7 +421,7 @@ int y;
 		}
 		else if(root->right!=NULL&&t->left!=NULL)
 		{
-			cout<<"\n ---MENU FOR DELETE MERGE----";
+			cout<<"\n ---MENU FOR DELETETION BY MERGING----";
 			cout<<"\n 1. Using inorder predecessor of node";
 			cout<<"\n 2. Using inorder successor of node";
 			cout<<"\n enter choice";
@@ -476,6 +479,96 @@ int y;
 	cout<<"\n Element does not exist";
 
 }
+
+/*
+ * Deletion by Copying
+ */
+void BST::delete_copying(node *root,int el)
+{
+ node *temp1,*temp2,*p,*q;
+	int y;
+	while(root!=NULL)
+	{
+		if(root->data==el)
+		{
+			temp2=root->left;
+			temp1=root->right;
+			break;
+		}
+		temp=root;
+		if(el<root->data)
+		root=root->left;
+		else
+		root=root->right;
+
+	}
+	if(root!=NULL)
+	{
+		if(root->right==NULL&&t->left==NULL)
+		{
+			if(el<temp->data)
+			temp->left=NULL;
+			else
+			temp->right=NULL;
+			delete root;
+		}
+		else if(root->right!=NULL&&t->left!=NULL)
+		{
+			cout<<"\n ---MENU FOR DELETION BY COPYING----";
+			cout<<"\n 1. Using inorder predecessor of node";
+			cout<<"\n 2. Using inorder successor of node";
+			cout<<"\n enter choice";
+			cin>>y;
+			switch(y)
+			{
+				case 1:	p=root->left;
+					while(p!=NULL)
+					{
+						q=p;
+						p=p->right;
+					}
+					root->data=q->data;
+					temp2->right=NULL;
+					delete q;
+					break;
+				case 2:	p=root->right;
+					while(p!=NULL)
+					{
+						q=p;
+						p=p->left;
+					}
+					root->data=q->data;
+					temp1->left=NULL;
+					delete q;
+					break;
+				default:break;
+			}
+		}
+		else
+		{
+			if(el<temp->data)
+			{
+				if(root->right!=NULL)
+				temp->left=root->right;
+				else
+				temp->left=root->right;
+			}
+			else
+			{
+				if(root->right!=NULL)
+				temp->right=root->left;
+				else
+				temp->right=root->right;
+			}
+			delete root;
+		}
+		cout<<"\n Element Deleted";
+	}
+	else
+	cout<<"\n Element does not exist";
+
+}
+
  
 
 
@@ -505,7 +598,8 @@ int main()
         cout<<"11.Count the number of leaf nodes, non-leaf nodes and total number of nodes"<<endl;
         cout<<"12.Height of the Tree"<<endl;
         cout<<"13.Deletion by Merging"<<endl;
-        cout<<"14.Quit"<<endl;
+        cout<<"14.Deletion by Copying"<<endl;
+        cout<<"15.Quit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
@@ -567,7 +661,12 @@ int main()
             cin>>el;
             bst.delete_merging(root,el);
             break;
-         case 14:
+          case 14:
+            cout<<"Enter the element to be deleted: ";
+            cin>>el;
+            bst.delete_copying(root,el);
+            break;
+         case 15:
             exit(1);
         default:
             cout<<"Wrong choice"<<endl;
