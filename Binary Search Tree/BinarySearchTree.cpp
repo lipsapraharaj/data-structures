@@ -37,6 +37,7 @@ class BST
         void heightoftree(node*);
         void delete_merging(node*,int);
         void delete_copying(node*,int);
+        void replacing(node*,int,int);
        
         BST()
         {
@@ -569,6 +570,78 @@ void BST::delete_copying(node *root,int el)
 
 }
 
+/*
+ * Replacing an element x with y
+ */
+void BST::replacing(node *temp, int info, int new_info)
+{
+  int flag=0,i;
+  node *p,*q;
+  node *ptr=NULL;
+  
+	while(temp!=NULL)
+	 {
+		if(el==temp->info)
+			{
+			  flag=1;
+			  break;
+			}
+		else if(el<temp->info)
+				temp=temp->left;
+		else
+				temp=temp->right;
+	 }
+   if (temp!=NULL && temp->info==info)
+  {
+    ptr->info=new info;                //replacing the node with with new value
+    delete_merging(root,ptr->info)     //deleting the original node
+    
+                                          
+		if(root==NULL)           //replacing the node 
+		 {
+			root=new node; 
+                        root->info=new_info;
+			root->left=0;
+			root->right=0;
+			
+		 }
+		else
+		 {
+			p=root;
+			q=new node;
+			q->left=0;
+			q->right=0;
+			q->info=new_info;
+
+			while(p!=0)
+			{
+			  if(i<p->info)
+				 {
+					p1=p;
+					p=p->left;
+				 }
+			  else
+				 {
+					if(i>=p->info)
+					 {
+						p1=p;
+						p=p->right;
+					 }
+				 }
+			}
+		  if(new_info<p1->info)
+			  {p1->left=q;}
+		  else
+				{p1->right=q;}
+		 }
+               cout<<"\nTree has benn updated with it's new node";
+              }
+            else if(root!=NULL)
+               cout<<"Node was not found";
+           else
+              cout<<"Binary Search Tree is EMPTY!!";
+          }
+
  
 
 
@@ -599,7 +672,8 @@ int main()
         cout<<"12.Height of the Tree"<<endl;
         cout<<"13.Deletion by Merging"<<endl;
         cout<<"14.Deletion by Copying"<<endl;
-        cout<<"15.Quit"<<endl;
+        cout<<"15.Searching for an element x and replacing it with y at its appropriate position in BST"<<endl;
+        cout<<"16.Quit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
@@ -667,6 +741,13 @@ int main()
             bst.delete_copying(root,el);
             break;
          case 15:
+            cout<<"Enter the element to be searched: ";
+            cin>>info;
+            cout<<"Enter the element to be replaced:";
+            cin>>new_info;
+            bst.replacing(root,info,new_info);
+            break;
+         case 16:
             exit(1);
         default:
             cout<<"Wrong choice"<<endl;
