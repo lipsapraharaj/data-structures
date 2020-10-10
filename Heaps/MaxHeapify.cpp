@@ -9,7 +9,7 @@ void max_heapify(int *a, int i, int n)
     j = 2*i;
     while (j < n)
     {
-        if (j < n-1 && a[j+1] > a[j])
+        if (j < n && a[j+1] > a[j])
             j = j + 1;
         if (temp > a[j])
             break;
