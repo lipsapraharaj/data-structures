@@ -13,12 +13,12 @@ void max_heapify(int arr[], int n, int i)
 
     if (right <= n && arr[right]>arr[largest])
         {  
-    largest=right;
-}
-else
-{
-largest=i;
-}
+       largest=right;
+       }
+    else
+     {
+      largest=i;
+     }
      if (largest!=i)
         temp=arr[i];
         arr[i]=arr[largest];
