@@ -26,7 +26,7 @@ void max_heapify(int arr[], int n, int i)
 void building_maxheap(int arr[],int n)
 {
     int i;
-    for(i = n; i >= 1; i--)
+    for(i = n/2; i >= 1; i--)
     {
         max_heapify(arr,n,i);
     }
