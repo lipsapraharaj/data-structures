@@ -170,7 +170,7 @@ void heap::display()
 
 int main() 
 {   
-    int choice,key,temp,i;
+    int choice,key,i;
     int arr[arraySize];
     heap h;
     while (1)
