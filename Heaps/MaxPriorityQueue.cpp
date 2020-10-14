@@ -157,7 +157,7 @@ void heap::increase_key(int arr[], int i,int key)
 {
     int temp=arr[i];
     arr[i]=arr[parent(arr,i)];
-    arr[parent(i)]=temp;
+    arr[parent(arr,i)]=temp;
     i = parent(arr, i);
   }
 }
