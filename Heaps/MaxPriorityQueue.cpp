@@ -91,21 +91,27 @@ void heap::max_heapify(int arr[],int i)
 
  // finding largest among parent, left child and right child  
 
-    if (l <= n  && arr[l] > arr[i])     
+    if (l <= n  && arr[l] > arr[i])  
+  {   
             largest=l;
+     }
    else
   {
      largest=i;
   }
     if (r <= n && arr[r] > arr[largest])
+        {
               largest=r;
+     }
 
      if (largest!=i)
+   {
         temp=arr[i];
         arr[i]=arr[largest];
         arr[largest]=arr[i];
 
     max_heapify(arr,largest);
+        }
 }
 
 
