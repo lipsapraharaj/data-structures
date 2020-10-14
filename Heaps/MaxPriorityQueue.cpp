@@ -208,7 +208,7 @@ int main()
             cout<<endl;
             break;
 	case 3:
-            h.extract_max(arr)
+            h.extract_max(arr);
             cout<<endl;
             break;
         case 4:
@@ -216,7 +216,7 @@ int main()
             cin>>i;
             cout<<"Enter by how much the key value to be increased: ";
             cin>>key;
-            h.increase_key(arr,i,key)
+            h.increase_key(arr,i,key);
             cout<<endl;
             break;
          case 5:
