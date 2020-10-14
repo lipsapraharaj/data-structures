@@ -36,6 +36,23 @@ public:
      
   }; 
 
+int heap::parent(int arr[],int i)            //function to get the parent of node of a tree
+{
+   return int((i-1)/2);
+}
+
+
+int heap::left(int i)              //function to get left child of node of a tree
+{
+  return 2*i+1;
+}
+
+
+int heap::right(int i)            //function to get right child of node of a tree
+{
+  return 2*i+2;
+}
+
 /*
  * To insert key in Heap
  */
@@ -88,22 +105,6 @@ void heap::max_heapify(int arr[],int i)
     max_heapify(arr,largest);
 }
 
-int heap::parent(int arr[],int i)            //function to get the parent of node of a tree
-{
-   return int((i-1)/2);
-}
-
-
-int heap::left(int i)              //function to get left child of node of a tree
-{
-  return 2*i+1;
-}
-
-
-int heap::right(int i)            //function to get right child of node of a tree
-{
-  return 2*i+2;
-}
 
 /*
  * Building Max Heap
