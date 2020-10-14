@@ -123,7 +123,7 @@ void heap::building_maxheap(int arr[])
     int i;
     for(i = (n/2); i >= 1; i--)
     {
-        max_heapify(arr);
+        max_heapify(arr,i);
     }
 }
 
