@@ -17,11 +17,11 @@ public:
         int right(int i);;
         void insert(int arr[],int key);
         void display();
-        void max_heapify(int arr[],int i)
+        void max_heapify(int arr[],int i);
         void building_maxheap();
         int maximum(int arr[]);
         int extract_max(int arr[]);
-        void increase_key(int arr[], int i)
+        void increase_key(int arr[], int i);
         void insert(int key);
 
         heap(int arraySize = 20)
