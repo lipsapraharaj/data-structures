@@ -93,7 +93,10 @@ void heap::max_heapify(int arr[],int i)
 
     if (l <= n  && arr[l] > arr[i])     
             largest=l;
-
+   else
+  {
+     largest=i;
+  }
     if (r <= n && arr[r] > arr[largest])
               largest=r;
 
