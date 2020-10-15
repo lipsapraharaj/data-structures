@@ -83,6 +83,7 @@ void heap::insert(int arr[],int key)
 }
 
 
+
 /*
  * Max Heapify
  */
@@ -174,31 +175,17 @@ int main()
         cout<<"-----------------"<<endl;
         cout<<"Operations on Heap"<<endl;
         cout<<"-----------------"<<endl;
-        cout<<"1.Insert Elemen "<<endl;
-        cout<<"2.Return Maximum value"<<endl;
-        cout<<"3.Extract Maximum Value"<<endl;
-        cout<<"4.Increase the key value"<<endl;
+        cout<<"1.Increase the key value"<<endl;
+        cout<<"2.Insert the Element"<<endl;
+        cout<<"3.Return Maximum value"<<endl;
+        cout<<"4.Extract Maximum Value"<<endl;
         cout<<"5.Display the Heap"<<endl;
         cout<<"6.Quit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
         {
-        case 1:
-            cout<<"Enter the key value to be inserted : ";
-	    cin>>key;
-            h.insert(arr,key);
-            cout<<endl;
-            break;
-        case 2:
-            h.maximum(arr);
-            cout<<endl;
-            break;
-	case 3:
-            h.extract_max(arr);
-            cout<<endl;
-            break;
-        case 4:
+         case 1:
             cout<<"Enter the index at which you want to increase the key: ";
             cin>>i;
             cout<<"Enter by how much the key value to be increased: ";
@@ -206,6 +193,21 @@ int main()
             h.increase_key(arr,i,key);
             cout<<endl;
             break;
+        case 2:
+            cout<<"Enter the key value to be inserted : ";
+	    cin>>key;
+            h.insert(arr,key);
+            cout<<endl;
+            break;
+        case 3:
+            h.maximum(arr);
+            cout<<endl;
+            break;
+	case 4:
+            h.extract_max(arr);
+            cout<<endl;
+            break;
+       
          case 5:
             cout<<"Displaying the Heap: "<<endl;
             h.display();
