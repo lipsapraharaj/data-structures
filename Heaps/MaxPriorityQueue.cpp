@@ -140,11 +140,19 @@ int heap::maximum(int arr[]) {
  */
 int heap::extract_max(int arr[]) 
 {
+    if(n[arr]<1)
+  {
+    cout<<"Heap Underflow";
+  }
+
+else
+{
   int max = arr[1];
   arr[1] = arr[n];
    n--;
   max_heapify(arr, 1);
   return max;
+  }
 }
 
 /*
