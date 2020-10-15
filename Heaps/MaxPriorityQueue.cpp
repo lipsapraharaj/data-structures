@@ -1,6 +1,7 @@
 #include<iostream>
 #include<conio.h>
 #include<process.h>
+#include<stdio.h>
 using namespace std;
 
 /*
@@ -11,6 +12,7 @@ class heap
       int arraySize = 20;
       int n;                 //n=heap size
       int *arr;
+      const int INF=1000000000;
 public:
         int parent(int arr[],int i);
         int left(int i);
@@ -54,29 +56,30 @@ int heap::right(int i)            //function to get right child of node of a tre
 }
 
 /*
- * To insert key in Heap
+ * To increase the key in Max Heap
+ */
+void heap::increase_key(int arr[], int i,int key)
+{
+  arr[i] = key;
+  while((i>1) && (arr[parent(arr,i)] < arr[i])) 
+{
+    int temp=arr[i];
+    arr[i]=arr[parent(arr,i)];
+    arr[parent(arr,i)]=temp;
+    i = parent(arr, i);
+  }
+}
+
+
+/*
+ * To insert key in Max Heap
  */
 void heap::insert(int arr[],int key) 
 {
-  if(n==arraySize)
-  {
-     int *temp=new int[2*arraySize];
-     for (int i=0;i < 2*arraySize;i++)
-      {
-        temp[i]=0;
-        }  
-
-       for (int i=0;i < arraySize;i++)
-       {
-          temp[i]=arr[i];
-          }
-           delete arr;
-           arr=temp;
-           temp=0;
-        }
-
-          arr[n++]=key;
-          building_maxheap(arr);
+  
+     n[arr]=n[arr]+1;
+     arr[n[arr]]=-1*INF;
+     increase_key(arr,n[arr],key); 
 }
 
 
@@ -91,27 +94,18 @@ void heap::max_heapify(int arr[],int i)
 
  // finding largest among parent, left child and right child  
 
-    if (l <= n  && arr[l] > arr[i])  
-  {   
+    if (l <= n  && arr[l] > arr[i])     
             largest=l;
-     }
-   else
-  {
-     largest=i;
-  }
-    if (r <= n && arr[r] > arr[largest])
-        {
+
+    if (r <= n && arr[right] > arr[largest])
               largest=r;
-     }
 
      if (largest!=i)
-   {
         temp=arr[i];
         arr[i]=arr[largest];
         arr[largest]=arr[i];
 
     max_heapify(arr,largest);
-        }
 }
 
 
@@ -140,13 +134,13 @@ int heap::maximum(int arr[]) {
  */
 int heap::extract_max(int arr[]) 
 {
-    if(n[arr]<1)
+   if(n[arr]<1)
   {
-    cout<<"Heap Underflow";
+   cout<<"Heap Underflow!!";
   }
 
-else
-{
+  else
+ {
   int max = arr[1];
   arr[1] = arr[n];
    n--;
@@ -154,22 +148,6 @@ else
   return max;
   }
 }
-
-/*
- * To increase the key in Heap
- */
-void heap::increase_key(int arr[], int i,int key)
-{
-  arr[i] = key;
-  while((i>1) && (arr[parent(arr,i)] < arr[i])) 
-{
-    int temp=arr[i];
-    arr[i]=arr[parent(arr,i)];
-    arr[parent(arr,i)]=temp;
-    i = parent(arr, i);
-  }
-}
-
 
 
 /*
@@ -185,6 +163,7 @@ void heap::display()
     cout<<"\n";
 }
 
+
 int main() 
 {   
     int choice,key,i;
@@ -195,7 +174,7 @@ int main()
         cout<<"-----------------"<<endl;
         cout<<"Operations on Heap"<<endl;
         cout<<"-----------------"<<endl;
-        cout<<"1.Insert Element "<<endl;
+        cout<<"1.Insert Elemen "<<endl;
         cout<<"2.Return Maximum value"<<endl;
         cout<<"3.Extract Maximum Value"<<endl;
         cout<<"4.Increase the key value"<<endl;
