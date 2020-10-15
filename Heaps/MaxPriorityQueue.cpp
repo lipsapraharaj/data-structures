@@ -124,7 +124,7 @@ void heap::building_maxheap(int arr[])
 
 
 /*
- * To get Maximum from the Heap
+ * To get Maximum key value from the Heap
  */
 int heap::maximum(int arr[]) {
   return arr[1];
