@@ -168,9 +168,11 @@ void heap::display()
 
 int main() 
 {   
-    int choice,key,i;
+    int choice,key,i,n;
     int arr[arraySize];
     heap h;
+   cout<<"Enter heap size";
+   cin>>n;
     while (1)
     {
         cout<<"-----------------"<<endl;
