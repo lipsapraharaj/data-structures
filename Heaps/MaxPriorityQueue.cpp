@@ -25,6 +25,7 @@ public:
         int extract_max(int arr[]);
         void increase_key(int arr[], int i);
         void insert(int key);
+        void heap_sort(arr);
 
         heap(int arraySize = 20)
       {
@@ -126,10 +127,10 @@ void heap::building_maxheap(int arr[])
 /*
  * To get Maximum key value from the Heap
  */
-int heap::maximum(int arr[]) 
-{
+int heap::maximum(int arr[])
+ {
   return arr[1];
-}
+ }
 
 /*
  * Extract Maximum 
@@ -153,6 +154,25 @@ int heap::extract_max(int arr[])
 
 
 /*
+ * Sorting the Heap
+ */
+void heap::heap_sort(int arr[])
+{
+        building_maxheap(int arr[]);        
+        int i, temp;
+	for (i = n; i >= 2; i--)
+	{
+		// Storing maximum value at the end
+		temp = arr[i];
+		arr[i] = arr[1];
+		arr[1] = temp;
+                n[arr]--;
+
+		max_heapify(arr,1);         // Building max heap of remaining element
+	}
+}
+
+/*
  * Display Heap
  */
 void heap::display() 
@@ -168,11 +188,11 @@ void heap::display()
 
 int main() 
 {   
-    int choice,key,i,n;
+    int choice,key,i;
     int arr[arraySize];
     heap h;
-   cout<<"Enter heap size";
-   cin>>n;
+    cout<<"Enter heap size: ";
+    cin>>n;
     while (1)
     {
         cout<<"-----------------"<<endl;
@@ -183,7 +203,8 @@ int main()
         cout<<"3.Return Maximum value"<<endl;
         cout<<"4.Extract Maximum Value"<<endl;
         cout<<"5.Display the Heap"<<endl;
-        cout<<"6.Quit"<<endl;
+        cout<<"6.Sort the Heap"<<endl;
+        cout<<"7.Quit"<<endl;
         cout<<"Enter your choice : ";
         cin>>choice;
         switch(choice)
@@ -216,7 +237,13 @@ int main()
             h.display();
             cout<<endl;
             break;
-	case 6:
+        case 6:
+            h.heap_sort(arr);
+           cout<<"\nSorted Heap: "<<endl;        // Printing the sorted heap 
+	   for (i = 1; i < n; i++)
+           h.display();
+            break;
+	case 7:
             exit(1);
         default:
             cout<<"Wrong choice"<<endl;
