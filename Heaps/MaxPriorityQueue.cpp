@@ -239,8 +239,7 @@ int main()
             break;
         case 6:
             h.heap_sort(arr);
-           cout<<"\nSorted Heap: "<<endl;        // Printing the sorted heap 
-	   for (i = 1; i < n; i++)
+           cout<<"\nSorted Heap: "<<endl;        // Printing the sorted heap
            h.display();
             break;
 	case 7:
