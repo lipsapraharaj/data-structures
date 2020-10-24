@@ -153,7 +153,7 @@ public:
      
     if (balance > 1 && key > node->left->key)      // Left child, Right subtree Case 
     {  
-        node->left = leftRotate(node->left);  
+        node->left = leftrotate(node->left);  
         return rightrotate(node);  
     }  
   
