@@ -24,7 +24,7 @@ public:
         void preorder(avl_node*);
         void postorder(avl_node*);
         void display(avl_node*, int);
-        avl_node *minValueNode(avl_node* node)
+        avl_node *minValueNode(avl_node* node);
         avl_node *deleteNode(avl_node*,int);
 
        avl_node *newavl_node(int data)
