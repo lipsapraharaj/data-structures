@@ -104,7 +104,10 @@ void upper::store(int ele,int i,int j)
          cout<<"\nEnter the element: ";
          cin>>ele;
          cout<<"\nEnter the row and column for the element in Upper Triangular matrix: \n";
-         cin>>i>>j;
+         cout<<"\nEnter row: ";
+         cin>>i;
+         cout<<"\nEnter column: ";
+         cin>>j;
          u1.store(ele,i,j);
          cout<<"\nEnter your choice: ";
          cin>>ch;
