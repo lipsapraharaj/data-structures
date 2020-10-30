@@ -111,7 +111,7 @@ void symmetric::store(int ele,int i,int j)
      }
     cout<<"\nThe Symmetric Matrix is: "<<"\n";
     sy.display();
-    cout<<"\nEnter the position for retrieval of element from upper triangular matrix: ";
+    cout<<"\nEnter the position for retrieval of element from symmetric matrix: ";
     cout<<"\nEnter row: ";
     cin>>i;
     cout<<"\nEnter column: ";
